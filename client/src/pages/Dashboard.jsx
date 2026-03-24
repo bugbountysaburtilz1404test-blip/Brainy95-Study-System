@@ -14,7 +14,10 @@ const Dashboard = () => {
 
     const fetchDecks = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/decks');
+            const token = localStorage.getItem('token');
+            const res = await axios.get('https://brainy95-server.onrender.com/api/decks', {
+                headers: { Authorization: `Bearer ${token}` }
+            });
             setDecks(res.data);
         } catch (err) {
             console.error(err);
@@ -24,7 +27,10 @@ const Dashboard = () => {
     const handleCreate = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/api/decks', newDeck);
+            const token = localStorage.getItem('token');
+            await axios.post('https://brainy95-server.onrender.com/api/decks', newDeck, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
             setShowModal(false);
             setNewDeck({ title: '', description: '' });
             fetchDecks();

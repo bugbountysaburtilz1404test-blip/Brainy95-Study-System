@@ -4,6 +4,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
+import Register from './pages/Register';
 import StudySession from './pages/StudySession';
 import DeckDetails from './pages/DeckDetails';
 
@@ -23,6 +24,7 @@ function App() {
             <main className="container mx-auto px-6 pt-28 pb-12">
               <Routes>
                 <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
                 <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
                 <Route path="/study/:deckId" element={<ProtectedRoute><StudySession /></ProtectedRoute>} />
                 <Route path="/deck/:deckId" element={<ProtectedRoute><DeckDetails /></ProtectedRoute>} />

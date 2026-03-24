@@ -20,14 +20,14 @@ export const AuthProvider = ({ children }) => {
     }, [token]);
 
     const login = async (email, password) => {
-        const res = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+        const res = await axios.post('https://brainy95-server.onrender.com/api/auth/login', { email, password });
         localStorage.setItem('token', res.data.token);
         setToken(res.data.token);
         return res.data;
     };
 
     const register = async (username, email, password) => {
-        const res = await axios.post('http://localhost:5000/api/auth/register', { username, email, password });
+        const res = await axios.post('https://brainy95-server.onrender.com/api/auth/register', { username, email, password });
         localStorage.setItem('token', res.data.token);
         setToken(res.data.token);
         return res.data;

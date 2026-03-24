@@ -17,12 +17,14 @@ const DeckDetails = () => {
 
     const fetchData = async () => {
         try {
-            const deckRes = await axios.get(`http://localhost:5000/api/decks`);
-            const currentDeck = deckRes.data.find(d => d._id === deckId);
-            setDeck(currentDeck);
-
-            // Fetch all cards (for management, not study)
-            const cardsRes = await axios.get(`http://localhost:5000/api/cards/deck/${deckId}`);
+            const res = await axios.get(`https://brainy95-server.onrender.com/api/decks/${deckId}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            setDeck(res.data);
+            
+            const cardsRes = await axios.get(`https://brainy95-server.onrender.com/api/cards/deck/${deckId}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
             setCards(cardsRes.data);
         } catch (err) {
             console.error(err);
@@ -32,7 +34,9 @@ const DeckDetails = () => {
     const handleAddCard = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/api/cards', { ...newCard, deckId });
+            await axios.post('https://brainy95-server.onrender.com/api/cards', { ...newCard, deck: deckId }, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
             setNewCard({ front: '', back: '' });
             setShowAddModal(false);
             fetchData();

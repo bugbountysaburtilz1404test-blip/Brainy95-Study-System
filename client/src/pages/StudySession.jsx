@@ -18,7 +18,9 @@ const StudySession = () => {
 
     const fetchCards = async () => {
         try {
-            const res = await axios.get(`http://localhost:5000/api/cards/deck/${deckId}`);
+            const res = await axios.get(`https://brainy95-server.onrender.com/api/cards/study/${deckId}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
             setCards(res.data);
             setLoading(false);
         } catch (err) {
@@ -28,9 +30,11 @@ const StudySession = () => {
     };
 
     const handleRate = async (quality) => {
+        const card = cards[currentIndex]; // Changed to use 'card' object
         try {
-            const cardId = cards[currentIndex]._id;
-            await axios.post(`http://localhost:5000/api/cards/${cardId}/rate`, { quality });
+            await axios.post(`https://brainy95-server.onrender.com/api/cards/rate/${card._id}`, { quality }, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
             
             if (currentIndex < cards.length - 1) {
                 setFlipped(false);
