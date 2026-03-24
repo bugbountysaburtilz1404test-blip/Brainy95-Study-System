@@ -7,7 +7,11 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: '*', // For testing, let's allow all. Or specifically: 'https://brainy95-study-system.pages.dev'
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
+}));
 
 // DB Connection
 mongoose.connect(process.env.MONGO_URI)
