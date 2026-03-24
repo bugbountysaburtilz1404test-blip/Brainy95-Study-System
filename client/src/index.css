@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply bg-[#060b07] text-white min-h-screen relative overflow-x-hidden;
+        background-image: radial-gradient(circle at center, #0d1b11 0%, #060b07 100%);
+    }
+}
+
+@layer components {
+    .glass-card {
+        @apply bg-white/5 backdrop-blur-md border border-[#77bf8e]/20 rounded-3xl p-6 transition-all duration-300;
+    }
+    .btn-primary {
+        @apply bg-[#77bf8e] text-black font-extrabold px-6 py-3 rounded-xl hover:bg-white transition-all shadow-[0_0_20px_rgba(119,191,142,0.3)];
+    }
+    .btn-gold {
+        @apply bg-[#f0c05a] text-black font-extrabold px-6 py-3 rounded-xl hover:bg-white transition-all shadow-[0_0_20px_rgba(240,192,90,0.3)];
+    }
+    .input-glass {
+        @apply bg-white/5 border border-[#77bf8e]/20 rounded-xl px-4 py-3 focus:outline-none focus:border-[#77bf8e] transition-all text-white w-full;
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #060b07; }
+::-webkit-scrollbar-thumb { background: #77bf8e; border-radius: 10px; }
